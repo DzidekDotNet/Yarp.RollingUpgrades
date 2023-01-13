@@ -13,7 +13,7 @@
         <PackageLicenseUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades/blob/main/LICENSE</PackageLicenseUrl>
         <PackageTags>Yarp, DotNetCore, Rolling upgrades, AB tests</PackageTags>
         <Description>Yarp Rolling Upgrades is an extendable and easy-to-use extension for Yarp Reverse Proxy</Description>
-        <PackageReadmeFile>..\README.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,5 +29,7 @@
     <ItemGroup>
         <InternalsVisibleTo Include="Dzidek.Net.Yarp.RollingUpgrades.UnitTests" />
     </ItemGroup>
-
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
 </Project>
