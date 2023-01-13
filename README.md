@@ -146,5 +146,5 @@ The project major version will be the same as the DotNetCore version
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/DzidekDotNet/Yarp.RollingUpgrades/blob/main/LICENSE)
 

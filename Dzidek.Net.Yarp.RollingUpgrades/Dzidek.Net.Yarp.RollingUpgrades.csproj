@@ -10,6 +10,9 @@
         <Version>7.0.0</Version>
         <PackageProjectUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades</PackageProjectUrl>
         <RepositoryUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades</RepositoryUrl>
+        <PackageLicenseUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades/blob/main/LICENSE</PackageLicenseUrl>
+        <PackageTags>Yarp, DotNetCore, Rolling upgrades, AB tests</PackageTags>
+        <Description>Yarp Rolling Upgrades is an extendable and easy-to-use extension for Yarp Reverse Proxy</Description>
     </PropertyGroup>
 
     <ItemGroup>
