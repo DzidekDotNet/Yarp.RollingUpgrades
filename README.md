@@ -138,6 +138,9 @@ curl http://localhost:8000/Test -H "TenantId: 1" -H "OtherHeader: 1"
 ## Versioning policy
 The project major version will be the same as the DotNetCore version
 
+## Nuget
+[Dzidek.Net.Yarp.RollingUpgrades](https://www.nuget.org/packages/Dzidek.Net.Yarp.RollingUpgrades)
+
 
 ## Authors
 
