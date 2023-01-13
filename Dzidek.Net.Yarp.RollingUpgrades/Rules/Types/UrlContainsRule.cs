@@ -9,7 +9,7 @@ public class UrlContainsRule : RuleBase
         _url = url;
     }
 
-    internal override bool IsValid(IClusterChooserHttpContext httpContext)
+    public override bool IsValid(IClusterChooserHttpContext httpContext)
     {
         return httpContext.Url.Contains(_url, StringComparison.InvariantCultureIgnoreCase);
     }

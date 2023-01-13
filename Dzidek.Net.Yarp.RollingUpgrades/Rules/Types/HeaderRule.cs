@@ -11,7 +11,7 @@ public class HeaderRule : RuleBase
         _headerValue = headerValue;
     }
 
-    internal override bool IsValid(IClusterChooserHttpContext httpContext)
+    public override bool IsValid(IClusterChooserHttpContext httpContext)
     {
         return httpContext.Headers.ContainsKey(_headerName) && httpContext.Headers[_headerName].Contains(_headerValue);
     }

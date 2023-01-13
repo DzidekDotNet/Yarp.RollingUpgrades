@@ -2,5 +2,5 @@
 
 public abstract class RuleBase
 {
-    internal abstract bool IsValid(IClusterChooserHttpContext httpContext);
+    public abstract bool IsValid(IClusterChooserHttpContext httpContext);
 }

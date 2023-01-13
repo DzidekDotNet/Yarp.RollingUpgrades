@@ -11,7 +11,7 @@ public class CookieRule : RuleBase
         _cookieValue = cookieValue;
     }
 
-    internal override bool IsValid(IClusterChooserHttpContext httpContext)
+    public override bool IsValid(IClusterChooserHttpContext httpContext)
     {
         return httpContext.Cookies.Any(x => x.Key == _cookieName && x.Value == _cookieValue);
     }

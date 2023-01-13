@@ -2,7 +2,7 @@
 
 public class AllRule : RuleBase
 {
-    internal override bool IsValid(IClusterChooserHttpContext httpContext)
+    public override bool IsValid(IClusterChooserHttpContext httpContext)
     {
         return true;
     }
