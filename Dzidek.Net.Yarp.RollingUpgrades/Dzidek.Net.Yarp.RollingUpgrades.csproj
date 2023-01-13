@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Title>Dzidek.Net.Yarp.RollingUpgrades</Title>
+        <Copyright>@Dzidek.Net</Copyright>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+            <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Yarp.ReverseProxy" Version="1.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Dzidek.Net.Yarp.RollingUpgrades.UnitTests" />
+    </ItemGroup>
+
+</Project>

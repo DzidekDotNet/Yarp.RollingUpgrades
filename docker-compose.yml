@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  rollingupgrade.proxy:
+    image: rollingupgrade.proxy
+    build:
+      context: .
+      dockerfile: RollingUpgrade.Proxy/Dockerfile
+      
+  rollingupgrade.api1:
+    image: rollingupgrade.api
+    build:
+      context: .
+      dockerfile: RollingUpgrade.Api/Dockerfile
+    depends_on:
+      - rollingupgrade.proxy
+  
+  rollingupgrade.api2:
+    image: rollingupgrade.api
+    build:
+      context: .
+      dockerfile: RollingUpgrade.Api/Dockerfile
+    depends_on:
+      - rollingupgrade.proxy
