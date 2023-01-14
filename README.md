@@ -177,6 +177,8 @@ public interface IClusterChooserHttpContext
 ```
 
 ## Changelog
+- 7.0.4 and 6.0.4
+  - Error fix
 - 7.0.3 and 6.0.3
   - Add scheduler
   - Changing cluster only when at least one destination is healthy (if configured health check in yarp)

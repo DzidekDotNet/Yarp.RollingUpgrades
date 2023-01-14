@@ -7,7 +7,7 @@
         <Title>Dzidek.Net.Yarp.RollingUpgrades</Title>
         <Copyright>@Dzidek.Net</Copyright>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>7.0.3</Version>
+        <Version>7.0.4</Version>
         <PackageProjectUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades</PackageProjectUrl>
         <RepositoryUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades/blob/main/LICENSE</PackageLicenseUrl>
