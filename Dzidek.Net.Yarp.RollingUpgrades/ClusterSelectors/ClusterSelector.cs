@@ -21,7 +21,6 @@ internal static class ClusterSelector
             context.Request.Host.ToString(), 
             context.Request.Headers, 
             context.Request.Cookies,
-            context.Request.Form,
             context.Request.Method,
             context.Request.Query);
     }

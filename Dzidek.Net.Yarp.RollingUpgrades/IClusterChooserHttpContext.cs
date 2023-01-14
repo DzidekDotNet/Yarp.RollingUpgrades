@@ -8,6 +8,5 @@ public interface IClusterChooserHttpContext
     string Method { get; }
     IDictionary<string, StringValues> Headers { get; }
     IEnumerable<KeyValuePair<string, string>> Cookies { get; }
-    IEnumerable<KeyValuePair<string, StringValues>> Form { get; }
     IEnumerable<KeyValuePair<string, StringValues>> Query { get; }
 }
