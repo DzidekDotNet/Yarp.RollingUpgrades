@@ -17,6 +17,13 @@ internal static class ClusterSelector
 
     private static IClusterChooserHttpContext GetHttpContext(HttpContext context)
     {
-        return new ClusterChooserHttpContext(context.Request.Path, context.Request.Headers, context.Request.Cookies);
+        return new ClusterChooserHttpContext(
+            context.Request.Path, 
+            context.Request.Headers, 
+            context.Request.Cookies,
+            context.Request.Form,
+            context.Request.Method,
+            context.Request.ContentType,
+            context.Request.Query);
     }
 }

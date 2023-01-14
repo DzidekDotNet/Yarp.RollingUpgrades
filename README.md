@@ -164,10 +164,25 @@ You can check it by doing the same steps as in 'Example and testing environment'
 ```
 curl http://localhost:8000/Test -H "TenantId: 1" -H "OtherHeader: 1"
 ```
+## HttpContext properties allowed in rules
+```csharp
+public interface IClusterChooserHttpContext
+{
+    string Url { get; }
+    string Method { get; }
+    string? ContentType { get; }
+    IDictionary<string, StringValues> Headers { get; }
+    IEnumerable<KeyValuePair<string, string>> Cookies { get; }
+    IEnumerable<KeyValuePair<string, StringValues>> Form { get; }
+    IEnumerable<KeyValuePair<string, StringValues>> Query { get; }
+}
+```
+
 ## Changelog
 - 7.0.3 and 6.0.3
   - Add scheduler
   - Changing cluster only when at least one destination is healthy (if configured health check in yarp)
+  - Extended allowed properties from HttpContext in rules
 
 ## Roadmap
 

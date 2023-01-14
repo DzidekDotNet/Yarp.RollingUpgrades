@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Title>Dzidek.Net.Yarp.RollingUpgrades</Title>
         <Copyright>@Dzidek.Net</Copyright>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>6.0.3</Version>
+        <Version>7.0.3</Version>
         <PackageProjectUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades</PackageProjectUrl>
         <RepositoryUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/DzidekDotNet/Yarp.RollingUpgrades/blob/main/LICENSE</PackageLicenseUrl>
