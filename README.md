@@ -18,7 +18,8 @@ app.MapReverseProxy();
 
 Install Dzidek.Net.Yarp.RollingUpgrades with NuGet
 
-Replace 
+To configure rolling upgrades you have two options
+- create and pass directly concrete class. to do that you have to replace 
 ```csharp
 app.MapReverseProxy();
 ```
@@ -26,6 +27,19 @@ app.MapReverseProxy();
 with
 ```csharp
 app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(new RollingUpgradesRules()); });
+```
+- register in your IoC container
+```csharp
+builder.Services.AddSingleton<IRollingUpgradesRulesQuery, RollingUpgradesRules>();
+```
+and replace
+```csharp
+app.MapReverseProxy();
+```
+
+with
+```csharp
+app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(); });
 ```
 
 Create class RollingUpgradesRules with rolling upgrades configuration. This configuration can be static or dynamic from a file or database or whenever you want
@@ -175,8 +189,17 @@ public interface IClusterChooserHttpContext
     IEnumerable<KeyValuePair<string, StringValues>> Query { get; }
 }
 ```
+## Api configuration extension
+If you want to be able to configure rolling upgrades dynamically by sending API request you should install Dzidek.Net.Yarp.RollingUpgrades.Extensions.Api package from nuget
+In program.cs your line should lokoks like
+with
+```csharp
+app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(); });
+```
 
 ## Changelog
+- 7.0.5 and 6.0.5
+  - Add extension allow to configure rolling upgrades from API (API request allowed from localhost)
 - 7.0.4 and 6.0.4
   - Error fix
 - 7.0.3 and 6.0.3
@@ -186,7 +209,6 @@ public interface IClusterChooserHttpContext
 
 ## Roadmap
 
-- Add extension allow to configure rolling upgrades from API (API request allowed from localhost)
 - Load last configuration from saved file in API extension
 
 ## Versioning policy

@@ -27,7 +27,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 // Basic example
-// app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(new RollingUpgradesRules()); });
+app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(new RollingUpgradesRules()); });
 // Example of Api configuration -> for Api Configuration line below should be uncomment and line above should be comment
-app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(); });
+//app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(); });
 app.Run();
