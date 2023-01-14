@@ -9,6 +9,6 @@ public class TestController : ControllerBase
     [HttpGet]
     public Task<int> Get()
     {
-        return Task.FromResult(2);
+        return Task.FromResult(1);
     }
 }
