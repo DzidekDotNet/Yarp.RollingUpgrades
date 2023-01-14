@@ -8,5 +8,4 @@ internal readonly record struct ClusterChooserHttpContext(
     IEnumerable<KeyValuePair<string, string>> Cookies,
     IEnumerable<KeyValuePair<string, StringValues>> Form,
     string Method,
-    string? ContentType,
     IEnumerable<KeyValuePair<string, StringValues>> Query) : IClusterChooserHttpContext;
