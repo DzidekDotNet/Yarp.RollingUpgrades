@@ -1,4 +1,6 @@
 using Dzidek.Net.Yarp.RollingUpgrades;
+using Dzidek.Net.Yarp.RollingUpgrades.Extensions.Api;
+using Dzidek.Net.Yarp.RollingUpgrades.Rules;
 using RollingUpgrade.Proxy;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+// Example of Api configuration
+builder.Services.UseRollingUpgradesApi();
 
 var app = builder.Build();
 
@@ -22,5 +26,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
-app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(new RollingUpgradesRules()); });
+// Basic example
+// app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(new RollingUpgradesRules()); });
+// Example of Api configuration -> for Api Configuration line below should be uncomment and line above should be comment
+app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(); });
 app.Run();

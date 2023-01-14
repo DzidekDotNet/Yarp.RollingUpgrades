@@ -10,12 +10,12 @@ namespace Dzidek.Net.Yarp.RollingUpgrades;
 public static class UseRollingUpgradesRegistration
 {
     public static IApplicationBuilder UseRollingUpgrades(this IApplicationBuilder app,
-        IRollingUpgradesRulesQuery rulesQuery)
+        IRollingUpgradesRulesQuery? rulesQuery = null)
     {
         IProxyStateLookup proxyStateLookup = app.ApplicationServices.GetRequiredService<IProxyStateLookup>();
         app.Use((context, next) =>
         {
-            var clusterSelected = ClusterSelector.ChooseCluster(context, rulesQuery);
+            var clusterSelected = ClusterSelector.ChooseCluster(context, rulesQuery??app.ApplicationServices.GetRequiredService<IRollingUpgradesRulesQuery>());
             if (clusterSelected != null && proxyStateLookup.TryGetCluster(clusterSelected, out var cluster) &&
                 cluster.DestinationsState.AvailableDestinations.Any())
             {

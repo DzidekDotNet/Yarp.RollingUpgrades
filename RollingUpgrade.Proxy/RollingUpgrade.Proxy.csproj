@@ -19,6 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Dzidek.Net.Yarp.RollingUpgrades.Extensions.Api\Dzidek.Net.Yarp.RollingUpgrades.Extensions.Api.csproj" />
       <ProjectReference Include="..\Dzidek.Net.Yarp.RollingUpgrades\Dzidek.Net.Yarp.RollingUpgrades.csproj" />
     </ItemGroup>
 
