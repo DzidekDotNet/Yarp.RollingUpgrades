@@ -12,7 +12,7 @@ internal static class ClusterSelector
         IReverseProxyFeature reverseProxyFeature = context.GetReverseProxyFeature();
         var routeRules = routeRuleGetter.GetRulesForRoute(reverseProxyFeature.Route.Config.RouteId);
         IRuleBasedClusterChooser ruleBasedClusterChooser = new RuleBasedClusterChooser();
-        return ruleBasedClusterChooser.GetClusterName(routeRules, GetHttpContext(context));
+        return ruleBasedClusterChooser.GetClusterName(routeRules, GetHttpContext(context), new CurrentDateTime());
     }
 
     private static IClusterChooserHttpContext GetHttpContext(HttpContext context)

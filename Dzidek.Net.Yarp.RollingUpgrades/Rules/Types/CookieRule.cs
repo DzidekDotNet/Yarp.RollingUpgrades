@@ -5,7 +5,8 @@ public class CookieRule : RuleBase
     private readonly string _cookieName;
     private readonly string _cookieValue;
 
-    public CookieRule(string cookieName, string cookieValue)
+    public CookieRule(string cookieName, string cookieValue, DateTimeOffset? dateFrom = null, DateTimeOffset? dateTo = null) : base(
+        dateFrom, dateTo)
     {
         _cookieName = cookieName;
         _cookieValue = cookieValue;

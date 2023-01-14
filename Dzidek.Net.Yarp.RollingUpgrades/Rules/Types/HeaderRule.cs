@@ -5,7 +5,8 @@ public class HeaderRule : RuleBase
     private readonly string _headerName;
     private readonly string _headerValue;
 
-    public HeaderRule(string headerName, string headerValue)
+    public HeaderRule(string headerName, string headerValue, DateTimeOffset? dateFrom = null, DateTimeOffset? dateTo = null) : base(
+        dateFrom, dateTo)
     {
         _headerName = headerName;
         _headerValue = headerValue;

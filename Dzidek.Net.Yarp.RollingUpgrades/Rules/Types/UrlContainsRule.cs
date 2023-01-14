@@ -4,7 +4,8 @@ public class UrlContainsRule : RuleBase
 {
     private readonly string _url;
 
-    public UrlContainsRule(string url)
+    public UrlContainsRule(string url, DateTimeOffset? dateFrom = null, DateTimeOffset? dateTo = null) : base(
+        dateFrom, dateTo)
     {
         _url = url;
     }

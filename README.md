@@ -1,7 +1,7 @@
 
-# Yarp Simple Rolling upgrades and AB tests
+# Simple rolling upgrades and AB tests with scheduler
 
-Yarp Rolling Upgrades is an extendable and easy-to-use extension for Yarp Reverse Proxy
+Yarp Rolling Upgrades is an extendable and easy-to-use extension for scheduled upgrades or AB test
 
 
 ## Basic usage
@@ -9,7 +9,7 @@ Yarp Rolling Upgrades is an extendable and easy-to-use extension for Yarp Revers
 Install Yarp.ReverseProxy with NuGet
 
 Add to Program.cs Yarp and load config from appsettings file. [Yarp documentation](https://microsoft.github.io/reverse-proxy/articles/getting-started.html)
-```cs
+```csharp
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 ...
@@ -19,17 +19,17 @@ app.MapReverseProxy();
 Install Dzidek.Net.Yarp.RollingUpgrades with NuGet
 
 Replace 
-```cs
+```csharp
 app.MapReverseProxy();
 ```
 
 with
-```cs
+```csharp
 app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(new RollingUpgradesRules()); });
 ```
 
 Create class RollingUpgradesRules with rolling upgrades configuration. This configuration can be static or dynamic from a file or database or whenever you want
-```cs
+```csharp
 internal sealed class RollingUpgradesRules : IRollingUpgradesRulesQuery
 {
     public IEnumerable<RollingUpgradesRule> GetRules()
@@ -41,7 +41,41 @@ internal sealed class RollingUpgradesRules : IRollingUpgradesRulesQuery
     }
 }
 ```
-
+## Defined rules
+- BasicRule
+  - AllRule - all request will be directed to defined cluster
+  ```csharp
+  new AllRule()
+  ```
+  - CookieRule - request with contains cookie with defined value will be directed to defined cluster
+  ```csharp
+  new CookieRule("CookieName", "CookieValue");
+  ```
+  - HeaderRule - request with contains header with defined value will be directed to defined cluster
+  ```csharp
+  new HeaderRule("HeaderName", "HeaderValue");
+  ```
+  - UrlContainsRule - request with contains in url defined value will be directed to defined cluster
+  ```csharp
+  new UrlContainsRule("UrlValue");
+  ```
+- ScheduledRules - rules with allow to plan and defer changing about changing cluster. DateFrom, DateTo describe when rule is valid 
+    - AllRule - all request will be directed to defined cluster
+  ```csharp
+  new AllRule(DateFrom, DateTo)
+  ```
+    - CookieRule - request with contains cookie with defined value will be directed to defined cluster
+  ```csharp
+  new CookieRule("CookieName", "CookieValue", DateFrom, DateTo);
+  ```
+    - HeaderRule - request with contains header with defined value will be directed to defined cluster
+  ```csharp
+  new HeaderRule("HeaderName", "HeaderValue", DateFrom, DateTo);
+  ```
+    - UrlContainsRule - request with contains in url defined value will be directed to defined cluster
+  ```csharp
+  new UrlContainsRule("UrlValue", DateFrom, DateTo);
+  ```
     
 ## Example and testing environment
 
@@ -63,7 +97,7 @@ curl http://localhost:8000/Test -H "TenantId: 1"
 curl http://localhost:8000/Test -H "TenantId: 2"
 ```
 Next, you should change the return value from 1 to whatever you want in the TestController file in RollingUpgrade.Api project
-```cs
+```csharp
 [ApiController]
 [Route("[controller]")]
 public class TestController : ControllerBase
@@ -87,7 +121,7 @@ curl http://localhost:8000/Test -H "TenantId: 2"
 ## Create your own rolling upgrade rule
 
 you have to implement the abstract class RuleBase with the method IsValid
-```cs
+```csharp
 public class CustomRule : RuleBase
 {
     private readonly string _headerName1;
@@ -112,7 +146,7 @@ public class CustomRule : RuleBase
 ```
 
 and yours it in the same way as predefined RuleBase
-```cs
+```csharp
 internal sealed class RollingUpgradesRules : IRollingUpgradesRulesQuery
 {
     public IEnumerable<RollingUpgradesRule> GetRules()
@@ -130,10 +164,15 @@ You can check it by doing the same steps as in 'Example and testing environment'
 ```
 curl http://localhost:8000/Test -H "TenantId: 1" -H "OtherHeader: 1"
 ```
+## Changelog
+- 7.0.3 and 6.0.3
+  - Add scheduler
+  - Changing cluster only when at least one destination is healthy (if configured health check in yarp)
+
 ## Roadmap
 
-- Add more HTTP request props allowed in rules
-
+- Add extension allow to configure rolling upgrades from API (API request allowed from localhost)
+- Load last configuration from saved file in API extension
 
 ## Versioning policy
 The project major version will be the same as the DotNetCore version
