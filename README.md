@@ -1,7 +1,7 @@
 
 # Simple rolling upgrades and AB tests with scheduler
 
-Yarp Rolling Upgrades is an extendable and easy-to-use extension for scheduled upgrades or AB test
+Yarp Rolling Upgrades is an extendable and easy-to-use extension for scheduled upgrades or AB tests. You can easily create your own rule
 
 
 ## Basic usage
@@ -39,6 +39,37 @@ internal sealed class RollingUpgradesRules : IRollingUpgradesRulesQuery
             new RollingUpgradesRule("ApiRoute", "Api2", new HeaderRule("TenantId", "1"))
         };
     }
+}
+```
+YARP configuration example
+```json
+{
+  "ReverseProxy": {
+    "Clusters": {
+      "Api1": {
+        "Destinations": {
+          "Client1": {
+            "Address": "http://rollingupgrade.api1:80"
+          }
+        }
+      },
+      "Api2": {
+        "Destinations": {
+          "Client1": {
+            "Address": "http://rollingupgrade.api2:80"
+          }
+        }
+      }
+    },
+    "Routes": {
+      "ApiRoute": {
+        "ClusterId": "Api1",
+        "Match": {
+          "Path": "{**catch-all}"
+        }
+      }
+    }
+  }
 }
 ```
 ## Defined rules
