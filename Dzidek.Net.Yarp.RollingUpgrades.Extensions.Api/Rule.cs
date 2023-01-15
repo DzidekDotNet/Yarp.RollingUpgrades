@@ -6,7 +6,7 @@
 /// <param name="RouteId">Rule route id</param>
 /// <param name="ClusterName">Target cluster name</param>
 /// <param name="Definition">Rule definition</param>
-public readonly record struct RuleDto(string RouteId, string ClusterName, RuleDefinitionDto Definition);
+public readonly record struct Rule(string RouteId, string ClusterName, RuleDefinition Definition);
 
 /// <summary>
 /// 
@@ -15,4 +15,4 @@ public readonly record struct RuleDto(string RouteId, string ClusterName, RuleDe
 /// <param name="DateFrom"></param>
 /// <param name="DateTo"></param>
 /// <param name="RuleValues">Rule constructor params</param>
-public readonly record struct RuleDefinitionDto(string RuleType, DateTimeOffset? DateFrom, DateTimeOffset? DateTo, Dictionary<string, string> RuleValues);
+public readonly record struct RuleDefinition(string RuleType, DateTimeOffset? DateFrom, DateTimeOffset? DateTo, Dictionary<string, string> RuleValues);

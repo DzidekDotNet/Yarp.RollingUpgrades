@@ -1,7 +1,7 @@
 
 # Simple rolling upgrades and AB tests with scheduler
 
-Yarp Rolling Upgrades is an extendable and easy-to-use extension for scheduled upgrades or AB test
+Yarp Rolling Upgrades is an extendable and easy-to-use extension for scheduled upgrades or AB test. You can easly create your own rule. Rolling upgrades can be easly configureable by sending request to API (reqires installing Dzidek.Net.Yarp.RollingUpgrades.Extensions.Api package)
 
 
 ## Basic usage
@@ -55,6 +55,38 @@ internal sealed class RollingUpgradesRules : IRollingUpgradesRulesQuery
     }
 }
 ```
+YARP configuration
+```json
+{
+  "ReverseProxy": {
+    "Clusters": {
+      "Api1": {
+        "Destinations": {
+          "Client1": {
+            "Address": "http://rollingupgrade.api1:80"
+          }
+        }
+      },
+      "Api2": {
+        "Destinations": {
+          "Client1": {
+            "Address": "http://rollingupgrade.api2:80"
+          }
+        }
+      }
+    },
+    "Routes": {
+      "ApiRoute": {
+        "ClusterId": "Api1",
+        "Match": {
+          "Path": "{**catch-all}"
+        }
+      }
+    }
+  }
+}
+```
+If you want to change configuration by sending request to API you be able to do this after installing Dzidek.Net.Yarp.RollingUpgrades.Extensions.Api package. Details further in the readme 
 ## Defined rules
 - BasicRule
   - AllRule - all request will be directed to defined cluster
@@ -199,7 +231,7 @@ app.MapReverseProxy(proxyPipeline => { proxyPipeline.UseRollingUpgrades(); });
 
 ## Changelog
 - 7.0.5 and 6.0.5
-  - Add extension allow to configure rolling upgrades from API (API request allowed from localhost)
+  - Add extension allow to configure rolling upgrades from API (API Key Authentication)
 - 7.0.4 and 6.0.4
   - Error fix
 - 7.0.3 and 6.0.3

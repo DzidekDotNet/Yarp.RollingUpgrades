@@ -1,6 +1,6 @@
 ﻿using Dzidek.Net.Yarp.RollingUpgrades.Rules;
 
-namespace Dzidek.Net.Yarp.RollingUpgrades.Extensions.Api;
+namespace Dzidek.Net.Yarp.RollingUpgrades.Extensions.Api.Rules;
 
 internal class RollingUpgradesRulesQuery : IRollingUpgradesRulesQuery
 {
